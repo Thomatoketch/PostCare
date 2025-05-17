@@ -52,44 +52,45 @@
         android:id="@+id/buttons_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Bouton Médecin -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card_medecin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/card_patient"
-            app:layout_constraintWidth_percent="0.45"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintWidth_percent="0.45">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     app:srcCompat="@mipmap/ic_launcher"
-                    app:tint="@color/postcare_blue"/>
+                    app:tint="@color/postcare_blue" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Médecin"
                     android:textColor="@color/postcare_blue"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -98,37 +99,37 @@
             android:id="@+id/card_patient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toEndOf="@id/card_medecin"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.45"
+            app:layout_constraintStart_toEndOf="@id/card_medecin"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintWidth_percent="0.45">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     app:srcCompat="@mipmap/ic_launcher"
-                    app:tint="@color/postcare_green"/>
+                    app:tint="@color/postcare_green" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Patient"
                     android:textColor="@color/postcare_green"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
