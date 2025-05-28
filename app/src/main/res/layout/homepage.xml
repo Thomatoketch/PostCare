@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,7 +44,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@mipmap/ic_launcher"/>
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:ignore="ContentDescription" />
 
     </androidx.cardview.widget.CardView>
 
@@ -73,21 +75,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="170dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">            >
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:srcCompat="@mipmap/ic_launcher"
-                    app:tint="@color/postcare_blue" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="Medecin Icon"
+                    app:srcCompat="@drawable/logo_medecin" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textSize="20dp"
                     android:text="Médecin"
                     android:textColor="@color/postcare_blue"
                     android:textStyle="bold" />
@@ -110,21 +112,21 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="170dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    app:srcCompat="@mipmap/ic_launcher"
-                    app:tint="@color/postcare_green" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/logo_patient"
+                    android:contentDescription="Patient Icon"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:textSize="20dp"
                     android:text="Patient"
                     android:textColor="@color/postcare_green"
                     android:textStyle="bold" />
