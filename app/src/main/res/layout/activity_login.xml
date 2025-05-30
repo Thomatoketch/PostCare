@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- header coloré -->
+    <View
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"/>
+
+    <!-- icône centrée -->
+    <ImageView
+        android:id="@+id/icon_role"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/bg_white_rounded"/>
+
+    <!-- texte titre -->
+    <TextView
+        android:id="@+id/title_role"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+
+    <!-- champs identifiants -->
+    <EditText
+        android:id="@+id/field_username"
+        android:hint="Identifiant"
+        style="@style/LoginField"/>
+
+    <EditText
+        android:id="@+id/field_password"
+        android:hint="Mot de passe"
+        style="@style/LoginField"
+        android:inputType="textPassword"/>
+
+    <!-- bouton se connecter -->
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:hint="SE CONNECTER"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"/>
+</LinearLayout>
