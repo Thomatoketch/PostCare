@@ -5,27 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Ton container de Fragments / ViewPager… -->
-        <FrameLayout
-            android:id="@+id/container_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottom_navigation"/>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom"
-            android:background="@color/postcare_blue"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemIconTint="@color/black"
-            app:itemTextColor="@color/black"
-            app:labelVisibilityMode="labeled"
-            app:itemHorizontalTranslationEnabled="false"/>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <include layout="@layout/layout_bottom_navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

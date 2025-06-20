@@ -12,7 +12,7 @@ import android.widget.EditText
 import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.databinding.ActivityLoginBinding
+import com.example.myapplication.com.example.myapplication.PostOpActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,14 +59,15 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
             }*/
-            if (username == "admin" && password == "admin") {
-                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
 
-            } else {
+            if (username != "admin" || password != "admin") {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, PostOpActivity::class.java)
+                intent.putExtra("USER_TYPE", role)
                 startActivity(intent)
                 finish()
+            } else {
+                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
             }
         }
     }
