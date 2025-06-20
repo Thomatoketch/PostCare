@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Button
+import android.widget.Toast
+import android.widget.EditText
+import android.content.Intent
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityLoginBinding
@@ -36,13 +39,35 @@ class LoginActivity : AppCompatActivity() {
             // Patient
             header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
             icon.setImageResource(R.drawable.logo_patient)
-            title.text = "Vous êtes un particulier"
+            title.text = "Vous êtes un patient"
             btnLogin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.postcare_green)))
             btnLogin.setTextColor(Color.WHITE)
         }
 
+        val editTextUsername = findViewById<EditText>(R.id.field_username)
+        val editTextPassword = findViewById<EditText>(R.id.field_password)
         btnLogin.setOnClickListener {
-            // ta logique de connexion...
+            val username = editTextUsername.text.toString()
+            val password = editTextPassword.text.toString()
+            /*
+            if (username == "admin" && password == "admin") {
+                Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            } else {
+                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
+            }*/
+            if (username == "admin" && password == "admin") {
+                Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }

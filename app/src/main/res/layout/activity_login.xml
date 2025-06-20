@@ -34,7 +34,8 @@
     <EditText
         android:id="@+id/field_username"
         android:hint="Identifiant"
-        style="@style/LoginField"/>
+        style="@style/LoginField"
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/field_password"
