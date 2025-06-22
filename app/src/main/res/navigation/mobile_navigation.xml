@@ -22,4 +22,19 @@
         android:name="com.example.myapplication.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/preparationFragment"
+        android:name="com.example.myapplication.ui.PreparationFragment"
+        android:label="Préparation">
+        <action
+            android:id="@+id/action_preparation_to_questionnaire"
+            app:destination="@id/questionnaireFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/questionnaireFragment"
+        android:name="com.example.myapplication.ui.QuestionnaireFragment"
+        android:label="Questionnaire" />
+
 </navigation>
