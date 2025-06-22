@@ -17,15 +17,18 @@ class HomePage : AppCompatActivity() {
         setContentView(binding.root)
 
         // Clic sur Médecin
+        // Dans onCreate de HomePage
         binding.cardMedecin.setOnClickListener {
-            Toast.makeText(this, "Médecin sélectionné", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, MedecinActivity::class.java))
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("USER_TYPE", "MED")
+            startActivity(intent)
         }
 
         // Clic sur Patient
         binding.cardPatient.setOnClickListener {
-            Toast.makeText(this, "Patient sélectionné", Toast.LENGTH_SHORT).show()
-            // startActivity(Intent(this, PatientActivity::class.java))
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.putExtra("USER_TYPE", "PAT")
+            startActivity(intent)
         }
     }
 }
