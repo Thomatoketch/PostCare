@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PatientAdapter(private val patients: List<Patient>) :
-    RecyclerView.Adapter<PatientAdapter.PatientViewHolder>() {
+class PatientAdapter(
+    private val patients: List<Patient>,
+    private val onItemClick: (Patient) -> Unit
+) : RecyclerView.Adapter<PatientAdapter.PatientViewHolder>() {
 
     class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.tvName)
