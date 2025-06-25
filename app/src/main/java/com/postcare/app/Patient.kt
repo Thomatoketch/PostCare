@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.postcare.app
 
 data class Patient(
     val name: String,

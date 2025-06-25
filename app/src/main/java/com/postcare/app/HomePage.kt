@@ -1,10 +1,10 @@
-package com.example.myapplication
+package com.postcare.app
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.databinding.HomepageBinding
+import com.postcare.app.databinding.HomepageBinding
 
 class HomePage : AppCompatActivity() {
 

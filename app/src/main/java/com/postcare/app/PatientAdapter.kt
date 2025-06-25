@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.postcare.app
 
 import android.view.LayoutInflater
 import android.view.View
