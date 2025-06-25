@@ -50,7 +50,7 @@ class QuestionnaireFragment : Fragment(R.layout.fragment_questionnaire) {
         selected.setBackgroundColor(resources.getColor(R.color.teal_200, null))
         selected.setTextColor(resources.getColor(android.R.color.white, null))
 
-        other.setBackgroundResource(R.drawable.bg_button_green_outline)
+        other.setBackgroundResource(R.drawable.bg_button_rounded_green)
         other.setTextColor(resources.getColor(R.color.teal_700, null))
     }
 }
