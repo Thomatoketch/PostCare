@@ -1,9 +1,9 @@
-package com.example.myapplication.ui
+package com.postcare.app.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.myapplication.R
+import com.postcare.app.R
 import com.google.android.material.button.MaterialButton
 
 class QuestionnaireFragment : Fragment(R.layout.fragment_questionnaire) {

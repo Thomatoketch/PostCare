@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.postcare.app
 
 import android.os.Bundle
 import android.widget.TextView

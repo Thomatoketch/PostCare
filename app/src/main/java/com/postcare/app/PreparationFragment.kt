@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.postcare.app.ui
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.R
+import com.postcare.app.R
 
 class PreparationFragment : Fragment(R.layout.fragment_preparation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
