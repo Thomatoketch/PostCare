@@ -27,15 +27,14 @@ class LoginActivity : AppCompatActivity() {
         val title      = findViewById<TextView>(R.id.title_role)
         val btnLogin   = findViewById<Button>(R.id.btn_login)
 
-        if (role == "MED") {
+        val nextIntent = if (role == "MED") {
             // Médecin
             header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
             icon.setImageResource(R.drawable.logo_medecin)
             title.text = "Vous êtes médecin"
             btnLogin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.postcare_blue)))
             btnLogin.setTextColor(Color.WHITE)
-            val intent = Intent(this, HomePageMedecin::class.java)
-            intent.putExtra("USER_TYPE", role)
+            Intent(this, HomePageMedecin::class.java)
         } else {
             // Patient
             header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
@@ -43,9 +42,9 @@ class LoginActivity : AppCompatActivity() {
             title.text = "Vous êtes un patient"
             btnLogin.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.postcare_green)))
             btnLogin.setTextColor(Color.WHITE)
-            val intent = Intent(this, HomePagePatient::class.java)
-            intent.putExtra("USER_TYPE", role)
+            Intent(this, HomePagePatient::class.java)
         }
+        nextIntent.putExtra("USER_TYPE", role)
 
         val editTextUsername = findViewById<EditText>(R.id.field_username)
         val editTextPassword = findViewById<EditText>(R.id.field_password)
@@ -55,18 +54,18 @@ class LoginActivity : AppCompatActivity() {
 
             if (username != "admin" || password != "admin") {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                intent.putExtra("OP_TYPE", "PRE")
-                startActivity(intent)
+                nextIntent.putExtra("OP_TYPE", "PRE")
+                startActivity(nextIntent)
                 finish()
             } else if (username == "Thomas") {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                intent.putExtra("OP_TYPE", "PRE")
-                startActivity(intent)
+                nextIntent.putExtra("OP_TYPE", "PRE")
+                startActivity(nextIntent)
                 finish()
             } else if (username == "Lea") {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
-                intent.putExtra("OP_TYPE", "POST")
-                startActivity(intent)
+                nextIntent.putExtra("OP_TYPE", "POST")
+                startActivity(nextIntent)
                 finish()
             }else {
                 Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show()
