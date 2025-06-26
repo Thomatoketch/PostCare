@@ -24,6 +24,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PostOpActivity" />
+        <activity android:name=".PreOpActivity" />
+        <activity android:name=".HomePageMedecin" />
+        <activity android:name=".HomePagePatient" />
         <!-- <activity android:name=".DetailPatientActivity" /> -->
     </application>
 

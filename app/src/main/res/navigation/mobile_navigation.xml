@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/preparationFragment"
-        android:name="com.postcare.app.ui.PreparationFragment"
+        android:name="com.postcare.app.PreparationFragment"
         android:label="Préparation">
         <action
             android:id="@+id/action_preparation_to_questionnaire"
