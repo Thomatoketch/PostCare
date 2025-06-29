@@ -40,6 +40,7 @@ class HomePageMedecin : AppCompatActivity() {
                     startActivity(nextIntent)
                     true
                 }
+
                 R.id.nav_suivie -> {
                     val nextIntent = Intent(this, PostOpActivity::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
