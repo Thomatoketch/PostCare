@@ -2,11 +2,16 @@ package com.postcare.app.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.postcare.app.R
 import com.google.android.material.button.MaterialButton
 
 class QuestionnaireFragment : Fragment(R.layout.fragment_questionnaire) {
+
+    private val viewModel: QuestionnaireViewModel by viewModels()
 
     private lateinit var buttonYes: MaterialButton
     private lateinit var buttonNo: MaterialButton
@@ -22,26 +27,38 @@ class QuestionnaireFragment : Fragment(R.layout.fragment_questionnaire) {
         buttonNo = view.findViewById(R.id.button_no)
         buttonNext = view.findViewById(R.id.button_next)
 
+        // Restaure la réponse sauvegardée, le cas échéant
+        viewModel.answer.value?.let {
+            userAnswer = it
+            if (it == "OUI") {
+                highlightSelection(buttonYes, buttonNo)
+            } else if (it == "NON") {
+                highlightSelection(buttonNo, buttonYes)
+            }
+        }
+
         // Gestion des clics OUI
         buttonYes.setOnClickListener {
             userAnswer = "OUI"
+            viewModel.setAnswer("OUI")
             highlightSelection(buttonYes, buttonNo)
         }
 
         // Gestion des clics NON
         buttonNo.setOnClickListener {
             userAnswer = "NON"
+            viewModel.setAnswer("NON")
             highlightSelection(buttonNo, buttonYes)
         }
 
         // Bouton "Suivant"
         buttonNext.setOnClickListener {
-            if (userAnswer != null) {
-                // TODO : Traiter la réponse ou naviguer
-                // findNavController().navigate(R.id.action_questionnaire_to_nextFragment)
+            val answer = viewModel.answer.value
+            if (answer != null) {
+                viewModel.saveAnswer()
+                findNavController().popBackStack()
             } else {
-                // Afficher un message à l'utilisateur s'il n'a rien sélectionné
-                // (optionnel) Toast.makeText(requireContext(), "Veuillez sélectionner une réponse", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Veuillez sélectionner une réponse", Toast.LENGTH_SHORT).show()
             }
         }
     }
