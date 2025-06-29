@@ -9,9 +9,9 @@ class DetailPatientActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_patient)
 
-        val name = intent.getStringExtra("name")
-        val operation = intent.getStringExtra("operationDetails")
-        val status = intent.getStringExtra("status")
+        intent.getStringExtra("name")
+        intent.getStringExtra("operationDetails")
+        intent.getStringExtra("status")
 
         // Tu peux afficher ces infos ou les utiliser pour charger une interface personnalisée
         // Par exemple :

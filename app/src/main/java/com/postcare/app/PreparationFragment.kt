@@ -18,10 +18,10 @@ class PreparationFragment : Fragment(R.layout.fragment_preparation) {
         }
 
         // Références aux boutons ronds cochables (RadioButtons)
-        val checkEtape2 = view.findViewById<RadioButton>(R.id.checkbox_etape2)
-        val checkEtape3 = view.findViewById<RadioButton>(R.id.checkbox_etape3)
-        val checkEtape4 = view.findViewById<RadioButton>(R.id.checkbox_etape4)
-        val checkEtape5 = view.findViewById<RadioButton>(R.id.checkbox_etape5)
+        view.findViewById<RadioButton>(R.id.checkbox_etape2)
+        view.findViewById<RadioButton>(R.id.checkbox_etape3)
+        view.findViewById<RadioButton>(R.id.checkbox_etape4)
+        view.findViewById<RadioButton>(R.id.checkbox_etape5)
 
         // TODO : Enregistrements ou actions si besoin (SharedPreferences, etc.)
     }

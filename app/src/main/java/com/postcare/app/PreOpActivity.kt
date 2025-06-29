@@ -49,15 +49,17 @@ class PreOpActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    val nextIntent = Intent(this, HomePageMedecin::class.java)
+                    val nextIntent = Intent(this, HomePagePatient::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
+                    finish()
                     true
                 }
                 R.id.nav_suivie -> {
-                    val nextIntent = Intent(this, PostOpActivity::class.java)
+                    val nextIntent = Intent(this, PreOpActivity::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
+                    finish()
                     true
                 }
                 // autres items...

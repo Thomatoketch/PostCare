@@ -14,7 +14,7 @@ class HomePageMedecin : AppCompatActivity() {
 
         // Récupère le rôle
         val role = intent.getStringExtra("USER_TYPE")
-        val op = intent.getStringExtra("OP_TYPE")
+        intent.getStringExtra("OP_TYPE")
 
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -38,6 +38,7 @@ class HomePageMedecin : AppCompatActivity() {
                     val nextIntent = Intent(this, HomePageMedecin::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
+                    finish()
                     true
                 }
 
@@ -45,6 +46,7 @@ class HomePageMedecin : AppCompatActivity() {
                     val nextIntent = Intent(this, PostOpActivity::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
+                    finish()
                     true
                 }
                 // autres items...
