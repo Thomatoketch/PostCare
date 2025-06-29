@@ -45,6 +45,25 @@ class PostOpActivity : AppCompatActivity() {
             navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
             header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         }
+
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    val nextIntent = Intent(this, HomePageMedecin::class.java)
+                    nextIntent.putExtra("USER_TYPE", role)
+                    startActivity(nextIntent)
+                    true
+                }
+                R.id.nav_suivie -> {
+                    val nextIntent = Intent(this, PostOpActivity::class.java)
+                    nextIntent.putExtra("USER_TYPE", role)
+                    startActivity(nextIntent)
+                    true
+                }
+                // autres items...
+                else -> false
+            }
+        }
     }
 
     private fun loadPatientsFromJson(): List<Patient> {
