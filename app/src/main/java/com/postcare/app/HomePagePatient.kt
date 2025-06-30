@@ -29,7 +29,6 @@ class HomePagePatient : AppCompatActivity() {
                     val nextIntent = Intent(this, HomePagePatient::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
-                    finish()
                     true
                 }
 
@@ -37,7 +36,6 @@ class HomePagePatient : AppCompatActivity() {
                     val nextIntent = Intent(this, PreOpActivity::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
-                    finish()
                     true
                 }
                 // autres items...

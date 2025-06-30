@@ -52,14 +52,12 @@ class PreOpActivity : AppCompatActivity() {
                     val nextIntent = Intent(this, HomePagePatient::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
-                    finish()
                     true
                 }
                 R.id.nav_suivie -> {
                     val nextIntent = Intent(this, PreOpActivity::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
-                    finish()
                     true
                 }
                 // autres items...
