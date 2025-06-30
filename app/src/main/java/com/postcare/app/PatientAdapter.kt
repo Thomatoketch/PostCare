@@ -28,6 +28,9 @@ class PatientAdapter(
         holder.tvName.text = patient.name
         holder.tvOperation.text = patient.operationDetails
         holder.tvStatus.text = patient.status
+        holder.itemView.setOnClickListener {
+            onItemClick(patient)
+        }
     }
 
     override fun getItemCount(): Int = patients.size
