@@ -28,6 +28,7 @@
         <activity android:name=".HomePageMedecin" />
         <activity android:name=".HomePagePatient" />
         <activity android:name=".DetailPatientActivity" />
+        <activity android:name=".ImagePredictionActivity" />
     </application>
 
 </manifest>

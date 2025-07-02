@@ -66,4 +66,5 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation("androidx.compose.ui:ui-tooling-preview:1.8.3")
     implementation("androidx.compose.runtime:runtime-livedata:1.8.3")
+    implementation(libs.tensorflow.lite)
 }
