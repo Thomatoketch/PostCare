@@ -11,28 +11,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#00A676"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp">
-
-        <ImageView
-            android:id="@+id/back_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/postcare_green">
 
         <ImageView
             android:id="@+id/logo_icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:src="@drawable/ic_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/chat_icon"
@@ -40,11 +29,10 @@
             android:layout_height="28dp"
             android:src="@drawable/ic_chat"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- CONTENU -->
 
     <!-- FOOTER -->
     <LinearLayout
@@ -86,7 +74,7 @@
                 android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_button_green_outline"
+                android:background="@drawable/circle_green"
                 android:backgroundTint="@android:color/transparent"
                 android:text="OUI"
                 android:textColor="#00A676"
@@ -97,7 +85,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="100dp"
                 android:layout_height="48dp"
-                android:background="@drawable/bg_button_green_outline"
+                android:background="@drawable/circle_green"
                 android:backgroundTint="@android:color/transparent"
                 android:text="NON"
                 android:textColor="#00A676"
@@ -108,54 +96,12 @@
             android:id="@+id/button_next"
             android:layout_width="220dp"
             android:layout_height="48dp"
-            android:background="@drawable/bg_button_green_outline"
+            android:background="@drawable/circle_green"
             android:backgroundTint="@android:color/transparent"
             android:text="SUIVANT"
             android:textColor="#00A676"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#00A676"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="5">
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_home"
-            android:contentDescription="Accueil" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_calendrier"
-            android:contentDescription="Rendez-vous" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_faq"
-            android:contentDescription="Questions" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_suivie"
-            android:contentDescription="Suivi" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_compte"
-            android:contentDescription="Compte" />
-    </LinearLayout>
+    <include layout="@layout/layout_bottom_navigation" />
 </LinearLayout>

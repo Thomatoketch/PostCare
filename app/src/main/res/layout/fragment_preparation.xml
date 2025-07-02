@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F0F0F0"
-    tools:context=".ui.PreparationFragment">
+    tools:context=".PreparationFragment">
 
     <!-- HEADER -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#00A676">
+        android:background="@color/postcare_green">
 
         <ImageView
             android:id="@+id/logo_icon"
@@ -58,7 +58,7 @@
                 android:text="Préparez votre opération"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#007144"
+                android:textColor="@color/postcare_green"
                 android:layout_marginBottom="8dp" />
 
             <TextView
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:text="5 étapes à compléter :"
                 android:textStyle="bold"
-                android:textColor="#007144"
+                android:textColor="@color/postcare_green"
                 android:layout_marginBottom="12dp" />
 
             <!-- Étape 1 -->
@@ -96,7 +96,7 @@
                     android:layout_width="28dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="#007144"
+                    android:buttonTint="@color/postcare_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false" />
 
@@ -121,7 +121,7 @@
                     android:id="@+id/checkbox_etape2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#007144"
+                    android:buttonTint="@color/postcare_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false" />
 
@@ -147,7 +147,7 @@
                     android:id="@+id/checkbox_etape3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#007144"
+                    android:buttonTint="@color/postcare_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false" />
 
@@ -172,7 +172,7 @@
                     android:id="@+id/checkbox_etape4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#007144"
+                    android:buttonTint="@color/postcare_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false" />
 
@@ -197,7 +197,7 @@
                     android:id="@+id/checkbox_etape5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="#007144"
+                    android:buttonTint="@color/postcare_green"
                     android:focusable="false"
                     android:focusableInTouchMode="false" />
 
@@ -213,54 +213,7 @@
         </LinearLayout>
 
     </ScrollView>
+
     <!-- FOOTER MENU -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#00A676"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="5">
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_home"
-            android:contentDescription="Accueil"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_calendrier"
-            android:contentDescription="Rendez-vous"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_faq"
-            android:contentDescription="Questions"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_suivie"
-            android:contentDescription="Suivi"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_compte"
-            android:contentDescription="Compte"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
+    <include layout="@layout/layout_bottom_navigation" />
 </LinearLayout>
