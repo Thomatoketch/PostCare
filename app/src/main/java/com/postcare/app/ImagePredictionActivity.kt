@@ -22,18 +22,29 @@ import androidx.compose.ui.unit.dp
 class ImagePredictionActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val initialUri: Uri? = intent.getParcelableExtra("imageUri")
         setContent {
-            PredictionScreen()
+            PredictionScreen(initialUri)
         }
     }
 }
 
 @Composable
-fun PredictionScreen() {
+fun PredictionScreen(initialUri: Uri? = null) {
     val context = LocalContext.current
     val classifier = remember { ImageClassifier(context) }
-    var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+    var selectedImageUri by remember { mutableStateOf<Uri?>(initialUri) }
     var result by remember { mutableStateOf("") }
+
+    LaunchedEffect(initialUri) {
+        initialUri?.let { uri ->
+            context.contentResolver.openInputStream(uri)?.use { stream ->
+                val bitmap = BitmapFactory.decodeStream(stream)
+                val outputs = classifier.classify(bitmap)
+                result = outputs.joinToString(prefix = "Result: ")
+            }
+        }
+    }
 
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         selectedImageUri = uri
