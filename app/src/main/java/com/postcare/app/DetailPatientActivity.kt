@@ -1,20 +1,23 @@
 package com.postcare.app
 
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DetailPatientActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_patient)
+        val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        val header = findViewById<View>(R.id.header)
+        navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
+        header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
 
-        intent.getStringExtra("name")
-        intent.getStringExtra("operationDetails")
-        intent.getStringExtra("status")
-
-        // Tu peux afficher ces infos ou les utiliser pour charger une interface personnalisée
-        // Par exemple :
-        // findViewById<TextView>(R.id.tvTitle).text = name
+        val backArrow = findViewById<View>(R.id.back_arrow)
+        backArrow.setOnClickListener {
+            finish()
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.postcare.app
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,9 @@ class PatientAdapter(
         holder.tvOperation.text = patient.operationDetails
         holder.tvStatus.text = patient.status
         holder.itemView.setOnClickListener {
-            onItemClick(patient)
+            val context = holder.itemView.context
+            val intent = Intent(context, DetailPatientActivity::class.java)
+            context.startActivity(intent)
         }
     }
 

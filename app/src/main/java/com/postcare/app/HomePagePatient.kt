@@ -33,7 +33,7 @@ class HomePagePatient : AppCompatActivity() {
                 }
 
                 R.id.nav_suivie -> {
-                    val nextIntent = Intent(this, PreOpActivity::class.java)
+                    val nextIntent = Intent(this, PreOpActivity_patient::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
                     true

@@ -81,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
                 intent.putExtra("OP_TYPE", "POST")
 
                 val nextIntent = if (role == "MED") {
-                    Intent(this, PostOpActivity::class.java)
+                    Intent(this, PostOpActivity_medecin::class.java)
                 } else {
                     Intent(this, HomePagePatient::class.java)
                 }

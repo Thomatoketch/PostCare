@@ -23,11 +23,11 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PostOpActivity" />
-        <activity android:name=".PreOpActivity" />
+        <activity android:name=".PostOpActivity_medecin" />
+        <activity android:name=".PreOpActivity_patient" />
         <activity android:name=".HomePageMedecin" />
         <activity android:name=".HomePagePatient" />
-        <!-- <activity android:name=".DetailPatientActivity" /> -->
+        <activity android:name=".DetailPatientActivity" />
     </application>
 
 </manifest>

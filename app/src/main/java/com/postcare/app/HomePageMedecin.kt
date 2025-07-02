@@ -19,16 +19,8 @@ class HomePageMedecin : AppCompatActivity() {
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val header = findViewById<View>(R.id.header)
-
-        if (role == "MED") {
-            // Médecin
-            navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
-            header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
-        } else {
-            // Patient
-            navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
-            header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
-        }
+        navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
+        header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
 
 
 
@@ -42,7 +34,7 @@ class HomePageMedecin : AppCompatActivity() {
                 }
 
                 R.id.nav_suivie -> {
-                    val nextIntent = Intent(this, PostOpActivity::class.java)
+                    val nextIntent = Intent(this, PostOpActivity_medecin::class.java)
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
                     true
