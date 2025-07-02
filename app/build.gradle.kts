@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.preference.ktx)
     implementation(libs.gson)
+    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui.tooling.preview.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
