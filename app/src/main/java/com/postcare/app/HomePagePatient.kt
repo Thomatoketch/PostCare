@@ -20,14 +20,14 @@ class HomePagePatient : AppCompatActivity() {
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val header = findViewById<View>(R.id.header)
-        val predictButton = findViewById<Button>(R.id.btn_predict)
+
         navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
 
+        val predictButton = findViewById<Button>(R.id.btn_predict)
         predictButton.setOnClickListener {
             startActivity(Intent(this, ImagePredictionActivity::class.java))
         }
-
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
