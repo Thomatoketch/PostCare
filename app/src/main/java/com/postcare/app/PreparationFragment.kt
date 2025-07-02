@@ -6,8 +6,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.postcare.app.ui.QuestionnaireFragment
+import com.postcare.app.QuestionnaireActivity
 
 class PreparationFragment : Fragment(R.layout.fragment_preparation) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -16,7 +15,8 @@ class PreparationFragment : Fragment(R.layout.fragment_preparation) {
         // Clique vers l'écran du questionnaire
         val link = view.findViewById<TextView>(R.id.go_to_questionnaire)
         link.setOnClickListener {
-            findNavController().navigate(R.id.fragment_questionnaire)
+            val intent = Intent(requireContext(), QuestionnaireActivity::class.java)
+            startActivity(intent)
         }
 
         // Références aux boutons ronds cochables (RadioButtons)
