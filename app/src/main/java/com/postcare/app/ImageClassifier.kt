@@ -22,15 +22,19 @@ class ImageClassifier(private val context: Context) {
     }
 
     fun classify(bitmap: Bitmap): FloatArray {
-        val inputSize = 224
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputSize, inputSize, true)
-        val byteBuffer = ByteBuffer.allocateDirect(4 * inputSize * inputSize * 3)
-        byteBuffer.order(ByteOrder.nativeOrder())
-        val intValues = IntArray(inputSize * inputSize)
-        resizedBitmap.getPixels(intValues, 0, inputSize, 0, 0, inputSize, inputSize)
+        val inputShape = interpreter.getInputTensor(0).shape()
+        val inputWidth = if (inputShape.size >= 2) inputShape[inputShape.size - 3] else inputShape[0]
+        val inputHeight = if (inputShape.size >= 2) inputShape[inputShape.size - 2] else inputShape[0]
+
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
+        val byteBuffer = ByteBuffer.allocateDirect(4 * inputWidth * inputHeight * 3)
+            .order(ByteOrder.nativeOrder())
+
+        val intValues = IntArray(inputWidth * inputHeight)
+        resizedBitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight)
         var pixel = 0
-        for (i in 0 until inputSize) {
-            for (j in 0 until inputSize) {
+        for (i in 0 until inputHeight) {
+            for (j in 0 until inputWidth) {
                 val value = intValues[pixel++]
                 byteBuffer.putFloat(((value shr 16 and 0xFF) / 255.0f))
                 byteBuffer.putFloat(((value shr 8 and 0xFF) / 255.0f))
@@ -38,7 +42,10 @@ class ImageClassifier(private val context: Context) {
             }
         }
 
-        val output = Array(1) { FloatArray(1) }
+        byteBuffer.rewind()
+
+        val outputSize = interpreter.getOutputTensor(0).numElements()
+        val output = Array(1) { FloatArray(outputSize) }
         interpreter.run(byteBuffer, output)
         return output[0]
     }
