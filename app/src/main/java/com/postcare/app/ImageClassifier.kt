@@ -26,44 +26,47 @@ class ImageClassifier(private val context: Context) {
     }
 
     fun classify(bitmap: Bitmap): FloatArray {
-        try {
-            val inputShape = interpreter.getInputTensor(0).shape()
-            val inputWidth = inputShape[2]
-            val inputHeight = inputShape[1]
+        val inputShape = interpreter.getInputTensor(0).shape()
+        val inputWidth = inputShape[2]
+        val inputHeight = inputShape[1]
+        val channels = if (inputShape.size >= 4) inputShape[3] else 1
 
-            val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
-            val byteBuffer = ByteBuffer.allocateDirect(4 * inputWidth * inputHeight)
-            byteBuffer.order(ByteOrder.nativeOrder())
+        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
+        val byteBuffer = ByteBuffer.allocateDirect(4 * inputWidth * inputHeight * channels)
+        byteBuffer.order(ByteOrder.nativeOrder())
 
-            val intValues = IntArray(inputWidth * inputHeight)
-            resizedBitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight)
+        val intValues = IntArray(inputWidth * inputHeight)
+        resizedBitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight)
 
-            var pixel = 0
-            for (i in 0 until inputHeight) {
-                for (j in 0 until inputWidth) {
-                    val value = intValues[pixel++]
-                    val r = (value shr 16 and 0xFF)
-                    val g = (value shr 8 and 0xFF)
-                    val b = (value and 0xFF)
-                    val gray = (0.299f * r + 0.587f * g + 0.114f * b) / 255.0f
+        var pixel = 0
+        for (i in 0 until inputHeight) {
+            for (j in 0 until inputWidth) {
+                val value = intValues[pixel++]
+                val r = (value shr 16 and 0xFF) / 255.0f
+                val g = (value shr 8 and 0xFF) / 255.0f
+                val b = (value and 0xFF) / 255.0f
+                if (channels == 1) {
+                    val gray = 0.299f * r + 0.587f * g + 0.114f * b
                     byteBuffer.putFloat(gray)
+                } else {
+                    byteBuffer.putFloat(r)
+                    byteBuffer.putFloat(g)
+                    byteBuffer.putFloat(b)
                 }
             }
-
-            byteBuffer.rewind()
-
-            val output = Array(1) { FloatArray(2) }
-            interpreter.run(byteBuffer, output)
-            return output[0]
-        } catch (e: Exception) {
-            android.util.Log.e("ImageClassifier", "Erreur lors de la classification", e)
-            return floatArrayOf(0f, 0f)
         }
+
+        byteBuffer.rewind()
+
+        val outputSize = interpreter.getOutputTensor(0).numElements()
+        val outputBuffer = FloatArray(outputSize)
+        interpreter.run(byteBuffer, arrayOf(outputBuffer))
+        return outputBuffer
     }
 
     fun classifyReadable(bitmap: Bitmap): String {
         val results = classify(bitmap)
-        val cancerProbability = results[1]  // index 1 = "Cancer"
+        val cancerProbability = if (results.size > 1) results[1] else results[0]
         val prediction = if (cancerProbability > 0.5f) "Cancer" else "Non cancer"
         val confidence = cancerProbability * 100
         return "Prédiction : $prediction\nConfiance : ${"%.2f".format(confidence)}%"
