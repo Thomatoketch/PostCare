@@ -45,10 +45,4 @@ class PreOpActivity_patient : AppCompatActivity() {
             }
         }
     }
-
-    private fun loadPatientsFromJson(): List<Patient> {
-        val json: String = assets.open("patients.json").bufferedReader().use { it.readText() }
-        val type = object : TypeToken<List<Patient>>() {}.type
-        return Gson().fromJson(json, type)
-    }
 }
