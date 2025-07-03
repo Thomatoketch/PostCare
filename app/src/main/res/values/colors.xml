@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="postcare_blue">#008BF9</color>
     <color name="postcare_green">#00B565</color>
+    <color name="dark_green">#009944</color>
     <color name="red_alert">#F44336</color>
 </resources>
