@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import android.widget.Toast
 
 class ImagePredictionActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +39,15 @@ fun PredictionScreen(initialUri: Uri? = null) {
 
     LaunchedEffect(initialUri) {
         initialUri?.let { uri ->
-            context.contentResolver.openInputStream(uri)?.use { stream ->
-                val bitmap = BitmapFactory.decodeStream(stream)
-                val outputs = classifier.classify(bitmap)
-                result = outputs.joinToString(prefix = "Result: ")
+            try {
+                context.contentResolver.openInputStream(uri)?.use { stream ->
+                    val bitmap = BitmapFactory.decodeStream(stream)
+                    val outputs = classifier.classify(bitmap)
+                    result = outputs.joinToString(prefix = "Result: ")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(context, "Erreur lors de l'analyse de l'image", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -49,10 +55,15 @@ fun PredictionScreen(initialUri: Uri? = null) {
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         selectedImageUri = uri
         uri?.let {
-            context.contentResolver.openInputStream(it)?.use { stream ->
-                val bitmap = BitmapFactory.decodeStream(stream)
-                val outputs = classifier.classify(bitmap)
-                result = outputs.joinToString(prefix = "Result: ")
+            try {
+                context.contentResolver.openInputStream(it)?.use { stream ->
+                    val bitmap = BitmapFactory.decodeStream(stream)
+                    val outputs = classifier.classify(bitmap)
+                    result = outputs.joinToString(prefix = "Result: ")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(context, "Erreur lors de l'analyse de l'image", Toast.LENGTH_LONG).show()
             }
         }
     }
