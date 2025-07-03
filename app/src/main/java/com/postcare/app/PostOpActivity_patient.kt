@@ -26,7 +26,7 @@ class PostOpActivity_patient : AppCompatActivity() {
 
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        val header = findViewById<View>(R.id.header)
+        val header = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.header)
         navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
 
