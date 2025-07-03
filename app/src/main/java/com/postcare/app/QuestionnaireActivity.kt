@@ -34,7 +34,7 @@ class QuestionnaireActivity : AppCompatActivity() {
                     val nextIntent = if (op == "PRE"){
                         Intent(this, PreOpActivity_patient::class.java)
                     } else {
-                        Intent(this, PostOpActivity_patient::class.java)
+                        Intent(this, PostOpActivity_patient_image::class.java)
                     }
                     nextIntent.putExtra("USER_TYPE", role)
                     nextIntent.putExtra("OP_TYPE", op)

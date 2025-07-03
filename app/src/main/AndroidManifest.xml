@@ -24,7 +24,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".PostOpActivity_medecin" />
         <activity android:name=".PreOpActivity_patient" />
-        <activity android:name=".PostOpActivity_patient" />
+        <activity android:name=".PostOpActivity_patient_image" />
         <activity android:name=".HomePageMedecin" />
         <activity android:name=".HomePagePatient" />
         <activity android:name=".DetailPatientActivity" />

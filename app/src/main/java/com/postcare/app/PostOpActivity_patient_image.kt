@@ -15,10 +15,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class PostOpActivity_patient : AppCompatActivity() {
-        override fun onCreate(savedInstanceState: Bundle?) {
+class PostOpActivity_patient_image : AppCompatActivity() {
+
+    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
+    private lateinit var classifier: ImageClassifier
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_patient)
+        setContentView(R.layout.image_send)
+
+        classifier = ImageClassifier(this)
 
         // Récupère le rôle
         val role = intent.getStringExtra("USER_TYPE")
@@ -30,15 +36,32 @@ class PostOpActivity_patient : AppCompatActivity() {
         navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
 
-        val button_symptome = findViewById<ImageView>(R.id.button_symptome)
-        button_symptome.setOnClickListener {
-            val intent = Intent(this, PostOpActivity_patient_image::class.java)
-            intent.putExtra("USER_TYPE", role)
-            intent.putExtra("OP_TYPE", op)
-            startActivity(intent)
-            finish()
-        }
 
+        val imageView = findViewById<ImageView>(R.id.iv_selected_image)
+        val resultView = findViewById<TextView>(R.id.tv_prediction_result)
+
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                imageView.setImageURI(it)
+                imageView.visibility = View.VISIBLE
+                val result = try {
+                    contentResolver.openInputStream(it)?.use { stream ->
+                        val bitmap = BitmapFactory.decodeStream(stream)
+                        classifier.classifyReadable(bitmap)
+                    } ?: "Analyse impossible"
+                } catch (e: Exception) {
+                    Log.e("PostOpActivity", "Erreur pendant l'analyse de l'image", e)
+                    e.printStackTrace()
+                    "Erreur lors de l'analyse"
+                }
+                resultView.text = result
+                resultView.visibility = View.VISIBLE
+            }
+        }
+        val predictButton = findViewById<Button>(R.id.btn_predict)
+        predictButton.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -53,7 +76,7 @@ class PostOpActivity_patient : AppCompatActivity() {
                     val nextIntent = if (op == "PRE"){
                         Intent(this, PreOpActivity_patient::class.java)
                     } else {
-                        Intent(this, PostOpActivity_patient::class.java)
+                        Intent(this, PostOpActivity_patient_image::class.java)
                     }
                     nextIntent.putExtra("USER_TYPE", role)
                     nextIntent.putExtra("OP_TYPE", op)

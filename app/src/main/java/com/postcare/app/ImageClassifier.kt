@@ -26,34 +26,39 @@ class ImageClassifier(private val context: Context) {
     }
 
     fun classify(bitmap: Bitmap): FloatArray {
-        val inputShape = interpreter.getInputTensor(0).shape() // [1, 224, 224, 1]
-        val inputWidth = inputShape[2]
-        val inputHeight = inputShape[1]
+        try {
+            val inputShape = interpreter.getInputTensor(0).shape()
+            val inputWidth = inputShape[2]
+            val inputHeight = inputShape[1]
 
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
-        val byteBuffer = ByteBuffer.allocateDirect(4 * inputWidth * inputHeight) // 1 canal (grayscale)
-        byteBuffer.order(ByteOrder.nativeOrder())
+            val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
+            val byteBuffer = ByteBuffer.allocateDirect(4 * inputWidth * inputHeight)
+            byteBuffer.order(ByteOrder.nativeOrder())
 
-        val intValues = IntArray(inputWidth * inputHeight)
-        resizedBitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight)
+            val intValues = IntArray(inputWidth * inputHeight)
+            resizedBitmap.getPixels(intValues, 0, inputWidth, 0, 0, inputWidth, inputHeight)
 
-        var pixel = 0
-        for (i in 0 until inputHeight) {
-            for (j in 0 until inputWidth) {
-                val value = intValues[pixel++]
-                val r = (value shr 16 and 0xFF)
-                val g = (value shr 8 and 0xFF)
-                val b = (value and 0xFF)
-                val gray = (0.299f * r + 0.587f * g + 0.114f * b) / 255.0f
-                byteBuffer.putFloat(gray)
+            var pixel = 0
+            for (i in 0 until inputHeight) {
+                for (j in 0 until inputWidth) {
+                    val value = intValues[pixel++]
+                    val r = (value shr 16 and 0xFF)
+                    val g = (value shr 8 and 0xFF)
+                    val b = (value and 0xFF)
+                    val gray = (0.299f * r + 0.587f * g + 0.114f * b) / 255.0f
+                    byteBuffer.putFloat(gray)
+                }
             }
+
+            byteBuffer.rewind()
+
+            val output = Array(1) { FloatArray(2) }
+            interpreter.run(byteBuffer, output)
+            return output[0]
+        } catch (e: Exception) {
+            android.util.Log.e("ImageClassifier", "Erreur lors de la classification", e)
+            return floatArrayOf(0f, 0f)
         }
-
-        byteBuffer.rewind()
-
-        val output = Array(1) { FloatArray(2) } // Binaire : 2 classes
-        interpreter.run(byteBuffer, output)
-        return output[0]
     }
 
     fun classifyReadable(bitmap: Bitmap): String {
