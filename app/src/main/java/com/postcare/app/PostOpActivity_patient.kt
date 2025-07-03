@@ -78,6 +78,7 @@ class PostOpActivity_patient : AppCompatActivity() {
                         Intent(this, PostOpActivity_patient::class.java)
                     }
                     nextIntent.putExtra("USER_TYPE", role)
+                    nextIntent.putExtra("OP_TYPE", op)
                     startActivity(nextIntent)
                     true
                 }

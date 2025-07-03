@@ -9,6 +9,7 @@
 
     <!-- HEADER -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@color/postcare_green">

@@ -102,11 +102,14 @@
                     android:focusableInTouchMode="false" />
 
                 <TextView
+                    android:id="@+id/lien_questionnaire"
                     android:layout_width="273dp"
                     android:layout_height="wrap_content"
                     android:text="Remplir ce formulaire la veille de l’opération"
                     android:textColor="@android:color/holo_blue_dark"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:clickable="true"
+                    android:focusable="true" />
 
             </LinearLayout>
 
