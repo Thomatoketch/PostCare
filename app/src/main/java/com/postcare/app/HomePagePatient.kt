@@ -19,14 +19,6 @@ class HomePagePatient : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage_patient)
 
-        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            uri?.let {
-                val intent = Intent(this, ImagePredictionActivity::class.java)
-                intent.putExtra("imageUri", it)
-                startActivity(intent)
-            }
-        }
-
         // Récupère le rôle
         val role = intent.getStringExtra("USER_TYPE")
         intent.getStringExtra("OP_TYPE")
@@ -38,6 +30,13 @@ class HomePagePatient : AppCompatActivity() {
         navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
 
+        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                val intent = Intent(this, ImagePredictionActivity::class.java)
+                intent.putExtra("imageUri", it)
+                startActivity(intent)
+            }
+        }
         val predictButton = findViewById<Button>(R.id.btn_predict)
         predictButton.setOnClickListener {
             pickImageLauncher.launch("image/*")
