@@ -46,8 +46,7 @@ class PostOpActivity_patient : AppCompatActivity() {
                 val result = try {
                     contentResolver.openInputStream(it)?.use { stream ->
                         val bitmap = BitmapFactory.decodeStream(stream)
-                        val outputs = classifier.classify(bitmap)
-                        outputs.joinToString(prefix = "Result: ")
+                        classifier.classifyReadable(bitmap)
                     } ?: "Analyse impossible"
                 } catch (e: Exception) {
                     e.printStackTrace()
