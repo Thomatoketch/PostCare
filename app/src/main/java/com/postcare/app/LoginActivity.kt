@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
             val username = editTextUsername.text.toString()
             val password = editTextPassword.text.toString()
 
-            if (username != "admin" || password != "admin") {
+            if (username == "admin") {
                 Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
 
                 val nextIntent = if (role == "MED") {

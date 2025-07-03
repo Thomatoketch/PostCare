@@ -12,16 +12,14 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomePagePatient : AppCompatActivity() {
-
     private lateinit var pickImageLauncher: ActivityResultLauncher<String>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage_patient)
 
         // Récupère le rôle
         val role = intent.getStringExtra("USER_TYPE")
-        intent.getStringExtra("OP_TYPE")
+        val op = intent.getStringExtra("OP_TYPE")
 
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -52,7 +50,11 @@ class HomePagePatient : AppCompatActivity() {
                 }
 
                 R.id.nav_suivie -> {
-                    val nextIntent = Intent(this, PreOpActivity_patient::class.java)
+                    val nextIntent = if (op == "PRE"){
+                        Intent(this, PreOpActivity_patient::class.java)
+                    } else {
+                        Intent(this, PostOpActivity_patient::class.java)
+                    }
                     nextIntent.putExtra("USER_TYPE", role)
                     startActivity(nextIntent)
                     true
