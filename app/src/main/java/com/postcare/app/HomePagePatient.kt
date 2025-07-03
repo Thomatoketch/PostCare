@@ -15,14 +15,9 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomePagePatient : AppCompatActivity() {
-    private lateinit var pickImageLauncher: ActivityResultLauncher<String>
-    private lateinit var classifier: ImageClassifier
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage_patient)
-
-        classifier = ImageClassifier(this)
 
         // Récupère le rôle
         val role = intent.getStringExtra("USER_TYPE")
@@ -31,34 +26,10 @@ class HomePagePatient : AppCompatActivity() {
         // Views
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val header = findViewById<View>(R.id.header)
-        val imageView = findViewById<ImageView>(R.id.iv_selected_image)
-        val resultView = findViewById<TextView>(R.id.tv_prediction_result)
+
 
         navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
         header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
-
-        pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            uri?.let {
-                imageView.setImageURI(it)
-                imageView.visibility = View.VISIBLE
-                val result = try {
-                    contentResolver.openInputStream(it)?.use { stream ->
-                        val bitmap = BitmapFactory.decodeStream(stream)
-                        val outputs = classifier.classify(bitmap)
-                        outputs.joinToString(prefix = "Result: ")
-                    } ?: "Analyse impossible"
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    "Erreur lors de l'analyse"
-                }
-                resultView.text = result
-                resultView.visibility = View.VISIBLE
-            }
-        }
-        val predictButton = findViewById<Button>(R.id.btn_predict)
-        predictButton.setOnClickListener {
-            pickImageLauncher.launch("image/*")
-        }
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
