@@ -36,7 +36,6 @@ class PostOpActivity_patient : AppCompatActivity() {
             intent.putExtra("USER_TYPE", role)
             intent.putExtra("OP_TYPE", op)
             startActivity(intent)
-            finish()
         }
 
 
