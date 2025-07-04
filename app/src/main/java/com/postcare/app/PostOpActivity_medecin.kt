@@ -3,6 +3,7 @@ package com.postcare.app
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,28 +24,21 @@ class PostOpActivity_medecin : AppCompatActivity() {
         val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val header = findViewById<View>(R.id.header)
 
-        if (role == "MED") {
-            // Médecin
-            navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
-            header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
-            val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewPatients)
-            recyclerView.layoutManager = LinearLayoutManager(this)
+        navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
+        header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_blue))
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewPatients)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-            val patients = loadPatientsFromJson()
+        val patients = loadPatientsFromJson()
 
-            val patientAdapter = PatientAdapter(patients) { patient ->
-                val intent = Intent(this, DetailPatientActivity::class.java)
-                intent.putExtra("name", patient.name)
-                intent.putExtra("operationDetails", patient.operationDetails)
-                intent.putExtra("status", patient.status)
-                startActivity(intent)
-            }
-            recyclerView.adapter = patientAdapter
-        } else {
-            // Patient
-            navView.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
-            header.setBackgroundColor(ContextCompat.getColor(this, R.color.postcare_green))
+        val patientAdapter = PatientAdapter(patients) { patient ->
+            val intent = Intent(this, DetailPatientActivity::class.java)
+            intent.putExtra("name", patient.name)
+            intent.putExtra("operationDetails", patient.operationDetails)
+            intent.putExtra("status", patient.status)
+            startActivity(intent)
         }
+        recyclerView.adapter = patientAdapter
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
